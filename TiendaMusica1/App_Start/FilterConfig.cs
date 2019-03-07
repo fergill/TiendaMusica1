@@ -1,7 +1,10 @@
 ﻿using System.Web;
 using System.Web.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace TiendaMusica1
+namespace TiendaMusica1.Filters
 {
     public class FilterConfig
     {

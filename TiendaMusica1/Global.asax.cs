@@ -6,6 +6,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using TiendaMusica1.Filters;
 
 namespace TiendaMusica1
 {
@@ -13,6 +14,7 @@ namespace TiendaMusica1
     {
         protected void Application_Start()
         {
+            System.Data.Entity.Database.SetInitializer(new TiendaMusica1.Models.SampleData());
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
