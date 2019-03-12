@@ -5,10 +5,11 @@ using System.Web;
 using System.Web.Mvc;
 using TiendaMusica1.Models;
 
+
 namespace TiendaMusica1.Controllers
 {
     [Authorize]
-    public class CheckoutController : Controller
+    public class PagarController : Controller
     {
         TiendaMusicaEntities storeDB = new TiendaMusicaEntities();
         const string PromoCode = "FREE";
