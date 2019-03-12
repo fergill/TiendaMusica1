@@ -10,6 +10,7 @@ using TiendaMusica1.Models;
 
 namespace TiendaMusica1.Controllers
 {
+    [Authorize(Users = "guerragil.fernanda@gmail.com")]
     public class CMSController : Controller
     {
         private TiendaMusicaEntities db = new TiendaMusicaEntities();

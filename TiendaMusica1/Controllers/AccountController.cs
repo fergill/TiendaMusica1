@@ -9,6 +9,11 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using TiendaMusica1.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System.Configuration;
+
+
+
 
 namespace TiendaMusica1.Controllers
 {
@@ -57,6 +62,8 @@ namespace TiendaMusica1.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+           
+
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -481,5 +488,9 @@ namespace TiendaMusica1.Controllers
             }
         }
         #endregion
+
+
+
+        
     }
 }
