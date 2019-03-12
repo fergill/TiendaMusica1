@@ -196,6 +196,7 @@
     <Compile Include="Controllers\CMSController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Controllers\TiendaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -295,6 +296,7 @@
     <Content Include="Views\Tienda\Browse.cshtml" />
     <Content Include="Views\Tienda\Details.cshtml" />
     <Content Include="Views\Tienda\Index.cshtml" />
+    <Content Include="Views\ShoppingCart\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
