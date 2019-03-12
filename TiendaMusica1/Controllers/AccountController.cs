@@ -11,8 +11,8 @@ using Microsoft.Owin.Security;
 using TiendaMusica1.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Configuration;
-
-
+using System.Web.Security;
+using System.Data.Entity;
 
 
 namespace TiendaMusica1.Controllers
@@ -20,6 +20,16 @@ namespace TiendaMusica1.Controllers
     [Authorize]
     public class AccountController : Controller
     {
+        private void MigrateShoppingCart(string UserName)
+        {
+            // Associate shopping cart items with logged-in user
+            var cart = ShoppingCart.GetCart(this.HttpContext);
+
+            cart.MigrateCart(UserName);
+            Session[ShoppingCart.CartSessionKey] = UserName;
+        }
+
+
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -75,6 +85,7 @@ namespace TiendaMusica1.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
+            
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -96,6 +107,34 @@ namespace TiendaMusica1.Controllers
                     ModelState.AddModelError("", "Invalid login attempt.");
                     return View(model);
             }
+
+            if (ModelState.IsValid)
+            {
+                if (Membership.ValidateUser(model.UserName, model.Password))
+                {
+                    MigrateShoppingCart(model.UserName);
+
+                    FormsAuthentication.SetAuthCookie(model.UserName,
+                        model.RememberMe);
+                    if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1
+                        && returnUrl.StartsWith("/")
+                        && !returnUrl.StartsWith("//") &&
+                        !returnUrl.StartsWith("/\\"))
+                    {
+                        return Redirect(returnUrl);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("", "The user name or password provided is incorrect.");
+                }
+            }
+            // If we got this far, something failed, redisplay form
+            return View(model);
         }
 
         //
@@ -177,6 +216,35 @@ namespace TiendaMusica1.Controllers
 
             // If we got this far, something failed, redisplay form
             return View(model);
+
+            if (ModelState.IsValid)
+            {
+                // Attempt to register the user
+                MembershipCreateStatus createStatus;
+                Membership.CreateUser(model.UserName, model.Password, model.Email,
+                       "question", "answer", true, null, out
+                       createStatus);
+
+                if (createStatus == MembershipCreateStatus.Success)
+                {
+                    MigrateShoppingCart(model.UserName);
+
+                    FormsAuthentication.SetAuthCookie(model.UserName, false /*
+                  createPersistentCookie */);
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ModelState.AddModelError("", ErrorCodeToString(createStatus));
+                }
+            }
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
+        private Exception ErrorCodeToString(MembershipCreateStatus createStatus)
+        {
+            throw new NotImplementedException();
         }
 
         //
