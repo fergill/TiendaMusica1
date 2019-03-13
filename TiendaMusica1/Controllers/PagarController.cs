@@ -20,7 +20,7 @@ namespace TiendaMusica1.Controllers
             return View();
         }
         //
-        // POST: /Checkout/AddressAndPayment
+        // POST: /Pagar/AddressAndPayment
         [HttpPost]
         public ActionResult AddressAndPayment(FormCollection values)
         {

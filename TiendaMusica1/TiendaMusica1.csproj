@@ -298,10 +298,10 @@
     <Content Include="Views\Tienda\Details.cshtml" />
     <Content Include="Views\Tienda\Index.cshtml" />
     <Content Include="Views\ShoppingCart\Index.cshtml" />
+    <Content Include="Views\Pagar\AddressAndPayment.cshtml" />
+    <Content Include="Views\Pagar\Complete.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Pagar\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
