@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<TiendaMusica1.Models.Genre>
 
-<ul id="categories">
+<ul id="navlist" class="nav-justified">
     @foreach (var genre in Model)
     {
         <li>
-            @Html.ActionLink(genre.Name, "Browse", "Store", new { Genre = genre.Name }, null)
-    </li>
-}
+            @Html.ActionLink(genre.Name, "Browse", "Tienda", new { Genre = genre.Name }, null)
+        </li>
+    }
 </ul>

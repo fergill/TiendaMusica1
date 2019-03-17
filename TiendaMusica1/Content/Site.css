@@ -26,20 +26,15 @@ body
 	margin-bottom: 10px;
 }
 
-#header h1
-{
-	font-size: 18px;
-	float: left;
-	background: url(/content/Images/logo.png) no-repeat;
-	padding: 45px 0px 5px 0px;
-}
+    #header h1 {
+        font-size: 18px;
+        float: left;
+        background: url(/content/Images/logo.png) no-repeat;
+        padding: 45px 0px 5px 0px;
+        float: left;
+    }
 
-#promotion
-{
-	height: 300px; 
-	width: 700px; 
-	background: url(/content/Images/home-showcase.png) no-repeat;
-}
+
 
 ul li a
 {
@@ -128,7 +123,7 @@ ul#album-list li a span
 /******************** Top Navigation ************************/
 ul#navlist
 {
-	float: right;
+	clear:both;
 }
 
 ul#navlist li
@@ -213,11 +208,8 @@ a:active
 #categories
 {
 	font-family: Constantia, Georgia, serif;
-	list-style-type: none;
-	border-right: #5d5a53 1px dotted;
-	padding-right: 10px;
-	margin: 0 25px 0 0;
-	float: left;
+	
+	
 }
 
 #categories a:link, #categories a:visited
